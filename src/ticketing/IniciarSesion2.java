@@ -5,6 +5,10 @@
  */
 package ticketing;
 
+import DAOImplements.*;
+import java.sql.SQLException;
+import Pojo.*;
+
 /**
  *
  * @author Daniel
@@ -30,13 +34,15 @@ public class IniciarSesion2 extends javax.swing.JFrame {
         jTextFieldCorreo = new javax.swing.JTextField();
         jLabelImagen = new javax.swing.JLabel();
         jLabelRespuestas = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonAceptar = new javax.swing.JButton();
+        jButtonCerrar = new javax.swing.JButton();
+        jButtonRegistro = new javax.swing.JButton();
         jPasswordFieldContraseña = new javax.swing.JPasswordField();
+        jLabelFoto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 153));
+        setResizable(false);
         setState(1);
 
         jTextFieldCorreo.setText("ejemplo@ejemplo.com");
@@ -46,15 +52,28 @@ public class IniciarSesion2 extends javax.swing.JFrame {
             }
         });
 
-        jLabelImagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\Daniel\\Desktop\\Ejercicios\\Ticketing\\User.png")); // NOI18N
-
         jLabelRespuestas.setEnabled(false);
 
-        jButton1.setText("jButton1");
+        jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        jButtonCerrar.setText("Cerrar");
+        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        jButtonRegistro.setText("Registrarse");
+        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistroActionPerformed(evt);
+            }
+        });
 
         jPasswordFieldContraseña.setText("jPasswordField1");
         jPasswordFieldContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -63,6 +82,9 @@ public class IniciarSesion2 extends javax.swing.JFrame {
             }
         });
 
+        jLabelFoto.setBackground(new java.awt.Color(246, 244, 246));
+        jLabelFoto.setIcon(new javax.swing.ImageIcon("/home/dev/NetBeansProjects/Ticketing/User.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,39 +92,44 @@ public class IniciarSesion2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
+                        .addGap(134, 134, 134)
                         .addComponent(jLabelImagen))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3))
-                            .addComponent(jTextFieldCorreo)
+                            .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                             .addComponent(jPasswordFieldContraseña)
-                            .addComponent(jLabelRespuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonAceptar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jLabelFoto)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabelImagen)
-                .addGap(41, 41, 41)
-                .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jPasswordFieldContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelImagen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPasswordFieldContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(jButtonCerrar)
+                    .addComponent(jButtonAceptar)
+                    .addComponent(jButtonRegistro))
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -110,14 +137,46 @@ public class IniciarSesion2 extends javax.swing.JFrame {
 
     private void jTextFieldCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCorreoMouseClicked
         // TODO add your handling code here:
-       this.jTextFieldCorreo.setText(null);
+        this.jTextFieldCorreo.setText(null);
     }//GEN-LAST:event_jTextFieldCorreoMouseClicked
 
     private void jPasswordFieldContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldContraseñaMouseClicked
         // TODO add your handling code here:
         this.jPasswordFieldContraseña.setText(null);
     }//GEN-LAST:event_jPasswordFieldContraseñaMouseClicked
-    
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        try (DaoImplements di = new DaoImplements()) {
+            Perfil p = di.buscaPerfil(this.jTextFieldCorreo.getText());
+            if (p.getPassword().equals(this.jPasswordFieldContraseña.getText())) {
+                this.jLabelRespuestas.setText("Perfil encontrado con exito");
+            } else {
+                this.jLabelRespuestas.setText("<html><body>Contraseña incorrecta. Has realizado<br> " + p.getIntentos() + " intentos</body></html>");
+                di.actualizaIntentos(p.getId(), p.getIntentos() + 1);
+                if (p.getIntentos() == 3) {
+                    this.jLabelRespuestas.setText("<html><body>Has realizado demasiados intentos pongase<br> en contacto con el administrador</body></html>");
+                    this.jButtonAceptar.setEnabled(false);
+                }
+            }
+        } catch (SQLException ex) {
+            this.jLabelRespuestas.setText("No se ha encontrado el perfil");
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            this.jLabelRespuestas.setText("Hubo otros problemas");
+        }
+
+
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
+
+    }//GEN-LAST:event_jButtonRegistroActionPerformed
+
+    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButtonCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,9 +213,10 @@ public class IniciarSesion2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButtonCerrar;
+    private javax.swing.JButton jButtonRegistro;
+    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelImagen;
     private javax.swing.JLabel jLabelRespuestas;
     private javax.swing.JPasswordField jPasswordFieldContraseña;

@@ -17,8 +17,9 @@ public class Perfil {
     private String correo;
     private String password;
     private String telefono;
+    private int intentos;
 
-    public Perfil(int id, String nombre, String apellido, String tipo, String correo, String password, String telefono) {
+    public Perfil(int id, String nombre, String apellido, String tipo, String correo, String password, String telefono, int intentos) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -26,6 +27,19 @@ public class Perfil {
         this.correo = correo;
         this.password = password;
         this.telefono = telefono;
+        this.intentos = intentos;
+    }
+    
+    
+
+    public Perfil(String nombre, String apellido, String tipo, String correo, String password, String telefono, int intentos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.tipo = tipo;
+        this.correo = correo;
+        this.password = password;
+        this.telefono = telefono;
+        this.intentos = intentos;
     }
 
     public String getTelefono() {
@@ -82,6 +96,14 @@ public class Perfil {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getIntentos() {
+        return intentos;
+    }
+
+    public void setIntentos(int intentos) {
+        this.intentos = intentos;
     }
     
     

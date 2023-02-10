@@ -27,16 +27,15 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
     Connection con = null;
 
     public DaoImplements() throws SQLException {
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Ticketing", "root", "root");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ticketing", "root", "root");
     }
 
     @Override
     public ArrayList<Incidencia> devuelveIncidencias() throws Exception {
         ArrayList<Incidencia> incidencias = new ArrayList<>();
         Incidencia i;
-        String sql = "Select id, estado, fecha_creacion, fecha_cierre, descripcion, prioridad, tipo, id_perfil,id_tecnico from Ticketing";
-        try (Statement stm = con.createStatement();
-                ResultSet rs = stm.executeQuery(sql);) {
+        String sql = "Select id, estado, fecha_creacion, fecha_cierre, descripcion, prioridad, tipo, id_perfil,id_tecnico from ticketing";
+        try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql);) {
             while (rs.next()) {
                 i = new Incidencia(rs.getInt("id"), rs.getString("estado"), rs.getString("fecha_creacion"), rs.getString("fecha_cierre"),
                         rs.getString("descripcion"), rs.getString("prioridad"), rs.getString("tipo"), rs.getInt("id_perfil"), rs.getInt("id_tecnico"));
@@ -47,7 +46,7 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
     }
 
     @Override
-    public String insertaPerfil(Perfil p) throws Exception {
+    public String insertaPerfil(Perfil p) {
         String sql = "Insert into Perfil values(?,?,?,?,?,?,?)";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setInt(1, p.getId());
@@ -56,14 +55,49 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
             stm.setString(4, p.getTipo());
             stm.setString(5, p.getCorreo());
             stm.setString(6, p.getPassword());
-            stm.setString(7, p.getTelefono()); 
+            stm.setString(7, p.getTelefono());
             stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return "Error al registrarse";
         }
         return "Hola";
-        
+
+    }
+
+    @Override
+    public Perfil buscaPerfil(String correo) throws Exception {
+        Perfil p = null;
+        String sql = "Select id, nombre, apellido, tipo, correo, password, telefono, intentos from perfiles where correo='" + correo + "'";
+        try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql);) {
+            while (rs.next()) {
+                p = new Perfil(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("tipo"),
+                        rs.getString("correo"), rs.getString("password"), rs.getString("telefono"), rs.getInt("intentos"));
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return p;
+    }
+
+    public void actualizaIntentos(int id, int numero) throws Exception {
+
+        if (numero <= 3) {
+            String sql = "Update perfiles set intentos= " + numero + " where id=" + id;
+
+            try (PreparedStatement stm = con.prepareStatement(sql)) {
+                stm.executeUpdate();
+            } catch (Exception e) {
+            }
+        } else {
+            String sql = "Update perfiles set intentos= " + 0 + " where id=" + id;
+
+            try (PreparedStatement stm = con.prepareStatement(sql)) {
+                stm.executeUpdate();
+            } catch (Exception e) {
+            }
+        }
+
     }
 
     @Override
