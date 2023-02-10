@@ -30,20 +30,20 @@ public class Registro extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelPassword = new javax.swing.JLabel();
         jTextFieldApellido = new javax.swing.JTextField();
         jButtonReg = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelRepPass = new javax.swing.JLabel();
         jButtonBack = new javax.swing.JButton();
         jPassword = new javax.swing.JPasswordField();
         jPasswordRep = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelApellidos = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelCorreo = new javax.swing.JLabel();
         jTextFieldCorreo = new javax.swing.JTextField();
         jTextFieldTelefono = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelTelf = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -52,9 +52,9 @@ public class Registro extends javax.swing.JDialog {
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setText("REGISTRAR NUEVO USUARIO");
 
-        jLabel2.setText("Nombre:");
+        jLabelNombre.setText("Nombre:");
 
-        jLabel3.setText("Password:");
+        jLabelPassword.setText("Password:");
 
         jTextFieldApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +69,7 @@ public class Registro extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Repetir password:");
+        jLabelRepPass.setText("Repetir password:");
 
         jButtonBack.setText("BACK");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class Registro extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setText("Apellidos:");
+        jLabelApellidos.setText("Apellidos:");
 
         jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +92,7 @@ public class Registro extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setText("Correo:");
+        jLabelCorreo.setText("Correo:");
 
         jTextFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +106,7 @@ public class Registro extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setText("Tlf:");
+        jLabelTelf.setText("Tlf:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,12 +117,12 @@ public class Registro extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
+                            .addComponent(jLabelApellidos)
+                            .addComponent(jLabelNombre)
+                            .addComponent(jLabelCorreo)
+                            .addComponent(jLabelTelf)
+                            .addComponent(jLabelPassword)
+                            .addComponent(jLabelRepPass)
                             .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -149,26 +149,26 @@ public class Registro extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabelNombre))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5))
+                    .addComponent(jLabelApellidos))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(jLabelCorreo)
                     .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabelTelf))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabelPassword))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordRep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabelRepPass))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,12 +253,12 @@ public class Registro extends javax.swing.JDialog {
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonReg;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelApellidos;
+    private javax.swing.JLabel jLabelCorreo;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelRepPass;
+    private javax.swing.JLabel jLabelTelf;
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JPasswordField jPasswordRep;
     private javax.swing.JScrollPane jScrollPane1;
