@@ -90,7 +90,7 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
             } catch (Exception e) {
             }
         } else {
-            String sql = "Update perfiles set intentos= " + 0 + " where id=" + id;
+            String sql = "Update perfiles set intentos= " + 1 + " where id=" + id;
 
             try (PreparedStatement stm = con.prepareStatement(sql)) {
                 stm.executeUpdate();
