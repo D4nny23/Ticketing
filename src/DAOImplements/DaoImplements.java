@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author dev
+ * @author Daniel
  */
 public class DaoImplements implements AutoCloseable, DAOInterface {
 
@@ -37,8 +37,9 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
         String sql = "Select id, estado, fecha_creacion, fecha_cierre, descripcion, prioridad, tipo, id_perfil,id_tecnico from ticketing";
         try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql);) {
             while (rs.next()) {
-                i = new Incidencia(rs.getInt("id"), rs.getString("estado"), rs.getString("fecha_creacion"), rs.getString("fecha_cierre"),
-                        rs.getString("descripcion"), rs.getString("prioridad"), rs.getString("tipo"), rs.getInt("id_perfil"), rs.getInt("id_tecnico"));
+                i = new Incidencia(rs.getInt("id"), rs.getString("titulo"), rs.getString("estado"), rs.getString("fecha_creacion"),
+                        rs.getString("fecha_cierre"), rs.getString("descripcion"), rs.getString("prioridad"), rs.getString("tipo"),
+                        rs.getInt("id_perfil"), rs.getInt("id_tecnico"));
                 incidencias.add(i);
             }
             return incidencias;
@@ -57,7 +58,7 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
             stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
-           
+
         }
 
     }
@@ -100,6 +101,39 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
     @Override
     public void close() throws Exception {
         con.close();
+    }
+
+    @Override
+    public Incidencia buscaIncidenciaPorId(int id) throws Exception {
+        Incidencia i = null;
+        String sql = "Select id,titulo, estado, fecha_creacion, fecha_cierre, descripcion, prioridad, tipo, id_perfil,id_tecnico from incidencia where id=" + id;
+        try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql);) {
+            while (rs.next()) {
+                i = new Incidencia(rs.getInt("id"), rs.getString("titulo"), rs.getString("estado"), rs.getString("fecha_creacion"),
+                        rs.getString("fecha_cierre"), rs.getString("descripcion"), rs.getString("prioridad"), rs.getString("tipo"),
+                        rs.getInt("id_perfil"), rs.getInt("id_tecnico"));
+            }
+            return i;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public void insertaIncidencia(Incidencia i) throws Exception {
+        String sql = "Insert into incidencia( titulo ,estado, descripcion, prioridad, tipo, id_perfil) values(?,?,?,?,?,?)";
+        try (PreparedStatement stm = con.prepareStatement(sql)) {
+            stm.setString(1, i.getTitulo());
+            stm.setString(2, i.getEstado());
+            stm.setString(3, i.getDescripcion());
+            stm.setString(4, i.getPrioridad());
+            stm.setString(5, i.getTipo());
+            stm.setInt(6, i.getId_perfil());
+            stm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 
 }

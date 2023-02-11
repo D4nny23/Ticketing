@@ -21,7 +21,7 @@ public class IniciarSesion2 extends javax.swing.JFrame {
      */
     public IniciarSesion2() {
         initComponents();
-        
+
     }
 
     /**
@@ -144,7 +144,9 @@ public class IniciarSesion2 extends javax.swing.JFrame {
         try (DaoImplements di = new DaoImplements()) {
             Perfil p = di.buscaPerfil(this.jTextFieldCorreo.getText());
             if (p.getPassword().equals(this.jPasswordFieldContraseña.getText())) {
-                this.jLabelRespuestas.setText("Perfil encontrado con exito");
+                GestionTicketing gt = new GestionTicketing(p);
+                gt.setVisible(true);
+                dispose();
             } else {
                 this.jLabelRespuestas.setText("<html><body>Contraseña incorrecta. Has realizado<br> " + p.getIntentos() + " intentos</body></html>");
                 di.actualizaIntentos(p.getId(), p.getIntentos() + 1);

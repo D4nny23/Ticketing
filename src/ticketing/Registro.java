@@ -21,7 +21,7 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro(java.awt.Frame parent) {
         initComponents();
-        
+
         this.jLabelTitulo.setText("<html><body><b>REGISTRAR NUEVO USUARIO</b></body></html>");
     }
 
@@ -222,12 +222,12 @@ public class Registro extends javax.swing.JFrame {
         Perfil p;
         try (DaoImplements di = new DaoImplements()) {
             if (!this.jTextFieldNombre.getText().equals("") && !this.jTextFieldApellido.getText().equals("")
-                && !this.jTextFieldCorreo.getText().equals("") && !this.jTextFieldTelefono.getText().equals("")
-                && !this.jPassword.getText().equals("") && !this.jPasswordRep.getText().equals("")) {
+                    && !this.jTextFieldCorreo.getText().equals("") && !this.jTextFieldTelefono.getText().equals("")
+                    && !this.jPassword.getText().equals("") && !this.jPasswordRep.getText().equals("")) {
                 if (this.jPassword.getText().equals(this.jPasswordRep.getText())) {
 
-                    p = new Perfil(this.jTextFieldNombre.getText(), this.jTextFieldApellido.getText(), this.jTextFieldCorreo.getText(),
-                        this.jPassword.getText(), this.jTextFieldTelefono.getText());
+                    p = new Perfil(this.jTextFieldNombre.getText(), this.jTextFieldApellido.getText(), "Usuario base", this.jTextFieldCorreo.getText(),
+                            this.jPassword.getText(), this.jTextFieldTelefono.getText());
                     di.insertaPerfil(p);
                     JOptionPane.showMessageDialog(this, "Usuario Registrado");
                     this.jTextFieldNombre.setBackground(null);

@@ -103,8 +103,6 @@ public class IniciarSesion extends JFrame {
 				contador++;
 				for (int i = 0; i < passwords.length; i++) {
 					if (usuario.getText().equals(correos[i]) && password.getText().equals(passwords[i])) {
-						GestionTicketing gt = new GestionTicketing();
-						gt.setVisible(true);
 						dispose();
 					} else if(!usuario.getText().equals(correos[i]) && !password.getText().equals(passwords[i])){
 						texto="<html><body>Usuario o contraseña <br>incorrectos</body></html>";

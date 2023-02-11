@@ -18,8 +18,20 @@ public class Incidencia {
 	private String tipo;
 	private int id_perfil;
         private int id_tecnico;
+        private String titulo;
 
-    public Incidencia(int id, String estado, String fecha_creacion, String fecha_cierre, String descripcion, String prioridad, String tipo, int id_perfil, int id_tecnico) {
+    public Incidencia(String estado, String descripcion, String prioridad, String tipo, int id_perfil, String titulo) {
+        this.estado = estado;
+        this.descripcion = descripcion;
+        this.prioridad = prioridad;
+        this.tipo = tipo;
+        this.id_perfil = id_perfil;
+        this.titulo = titulo;
+    }
+
+        
+        
+    public Incidencia(int id,String titulo, String estado, String fecha_creacion, String fecha_cierre, String descripcion, String prioridad, String tipo, int id_perfil, int id_tecnico) {
         this.id = id;
         this.estado = estado;
         this.fecha_creacion = fecha_creacion;
@@ -29,6 +41,7 @@ public class Incidencia {
         this.tipo = tipo;
         this.id_perfil = id_perfil;
         this.id_tecnico = id_tecnico;
+        this.titulo= titulo;
     }
 
     public int getId_tecnico() {
@@ -102,6 +115,13 @@ public class Incidencia {
     public void setId_perfil(int id_perfil) {
         this.id_perfil = id_perfil;
     }
-        
-        
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+     
 }
