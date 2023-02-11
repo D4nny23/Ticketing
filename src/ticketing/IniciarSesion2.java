@@ -8,6 +8,7 @@ package ticketing;
 import DAOImplements.*;
 import java.sql.SQLException;
 import Pojo.*;
+import ticketing.Registro;
 
 /**
  *
@@ -169,7 +170,9 @@ public class IniciarSesion2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
-
+        Registro r= new Registro(this);
+        r.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonRegistroActionPerformed
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed

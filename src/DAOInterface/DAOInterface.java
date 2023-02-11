@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public interface DAOInterface {
     public ArrayList<Incidencia> devuelveIncidencias() throws Exception;
-    public String insertaPerfil(Perfil p) throws Exception;
+    public void insertaPerfil(Perfil p) throws Exception;
     public Perfil buscaPerfil(String correo) throws Exception;
     public void actualizaIntentos(int id, int numero) throws Exception;
 }

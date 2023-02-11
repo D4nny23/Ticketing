@@ -19,6 +19,14 @@ public class Perfil {
     private String telefono;
     private int intentos;
 
+    public Perfil(String nombre, String apellido, String correo, String password, String telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.password = password;
+        this.telefono = telefono;
+    }
+
     public Perfil(int id, String nombre, String apellido, String tipo, String correo, String password, String telefono, int intentos) {
         this.id = id;
         this.nombre = nombre;

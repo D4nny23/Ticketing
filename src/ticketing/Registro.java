@@ -2,19 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package appticketin;
+package ticketing;
+
+import DAOImplements.DaoImplements;
+import Pojo.Perfil;
+import java.awt.Color;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author dev
  */
-public class Registro extends javax.swing.JDialog {
+public class Registro extends javax.swing.JFrame {
 
     /**
      * Creates new form Registro
      */
-    public Registro(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Registro(java.awt.Frame parent) {
         initComponents();
     }
 
@@ -71,7 +76,7 @@ public class Registro extends javax.swing.JDialog {
 
         jLabelRepPass.setText("Repetir password:");
 
-        jButtonBack.setText("BACK");
+        jButtonBack.setText("Volver");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBackActionPerformed(evt);
@@ -137,7 +142,7 @@ public class Registro extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
                         .addComponent(jLabel1)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,11 +174,11 @@ public class Registro extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordRep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelRepPass))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonReg, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(67, 67, 67))
         );
 
         pack();
@@ -184,11 +189,69 @@ public class Registro extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldApellidoActionPerformed
 
     private void jButtonRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegActionPerformed
-        
+
+        Perfil p;
+        try (DaoImplements di = new DaoImplements()) {
+            if (!this.jTextFieldNombre.getText().equals("") && !this.jTextFieldApellido.getText().equals("")
+                    && !this.jTextFieldCorreo.getText().equals("") && !this.jTextFieldTelefono.getText().equals("")
+                    && !this.jPassword.getText().equals("") && !this.jPasswordRep.getText().equals("")) {
+                if (this.jPassword.getText().equals(this.jPasswordRep.getText())) {
+
+                    p = new Perfil(this.jTextFieldNombre.getText(), this.jTextFieldApellido.getText(), this.jTextFieldCorreo.getText(),
+                            this.jPassword.getText(), this.jTextFieldTelefono.getText());
+                    di.insertaPerfil(p);
+                    JOptionPane.showMessageDialog(this, "Usuario Registrado");
+                    this.jTextFieldNombre.setBackground(null);
+                    this.jTextFieldApellido.setBackground(null);
+                    this.jTextFieldCorreo.setBackground(null);
+                    this.jTextFieldTelefono.setBackground(null);
+                    this.jPassword.setBackground(null);
+                    this.jPasswordRep.setBackground(null);
+
+                    this.jTextFieldNombre.setText(null);
+                    this.jTextFieldApellido.setText(null);
+                    this.jTextFieldCorreo.setText(null);
+                    this.jTextFieldTelefono.setText(null);
+                    this.jPassword.setText(null);
+                    this.jPasswordRep.setText(null);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pueden dejar campos vacios");
+                if (this.jTextFieldNombre.getText().equals("")) {
+                    this.jTextFieldNombre.setBackground(Color.red);
+                }
+                if (this.jTextFieldApellido.getText().equals("")) {
+                    this.jTextFieldApellido.setBackground(Color.red);
+                }
+                if (this.jTextFieldCorreo.getText().equals("")) {
+                    this.jTextFieldCorreo.setBackground(Color.red);
+                }
+                if (this.jTextFieldTelefono.getText().equals("")) {
+                    this.jTextFieldTelefono.setBackground(Color.red);
+                }
+                if (this.jPassword.getText().equals("")) {
+                    this.jPassword.setBackground(Color.red);
+                }
+                if (this.jPasswordRep.getText().equals("")) {
+                    this.jPasswordRep.setBackground(Color.red);
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Hubo un error");
+        } catch (Exception ex) {
+
+        }
     }//GEN-LAST:event_jButtonRegActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
+        IniciarSesion2 inicio = new IniciarSesion2();
+        inicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jPasswordRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordRepActionPerformed
@@ -237,14 +300,7 @@ public class Registro extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Registro dialog = new Registro(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                Registro JFrame = new Registro(new javax.swing.JFrame());
             }
         });
     }
