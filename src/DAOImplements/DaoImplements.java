@@ -48,13 +48,14 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
 
     @Override
     public void insertaPerfil(Perfil p) {
-        String sql = "Insert into perfiles(nombre, apellido, correo,password, telefono) values(?,?,?,?,?)";
+        String sql = "Insert into perfiles(nombre, apellido, tipo, correo,password, telefono) values(?,?,?,?,?,?)";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setString(1, p.getNombre());
             stm.setString(2, p.getApellido());
-            stm.setString(3, p.getCorreo());
-            stm.setString(4, p.getPassword());
-            stm.setString(5, p.getTelefono());
+            stm.setString(3, p.getTipo());
+            stm.setString(4, p.getCorreo());
+            stm.setString(5, p.getPassword());
+            stm.setString(6, p.getTelefono());
             stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

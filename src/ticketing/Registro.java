@@ -230,12 +230,12 @@ public class Registro extends javax.swing.JFrame {
                             this.jPassword.getText(), this.jTextFieldTelefono.getText());
                     di.insertaPerfil(p);
                     JOptionPane.showMessageDialog(this, "Usuario Registrado");
-                    this.jTextFieldNombre.setBackground(null);
-                    this.jTextFieldApellido.setBackground(null);
-                    this.jTextFieldCorreo.setBackground(null);
-                    this.jTextFieldTelefono.setBackground(null);
-                    this.jPassword.setBackground(null);
-                    this.jPasswordRep.setBackground(null);
+                    this.jTextFieldNombre.setBackground(Color.WHITE);
+                    this.jTextFieldApellido.setBackground(Color.WHITE);
+                    this.jTextFieldCorreo.setBackground(Color.WHITE);
+                    this.jTextFieldTelefono.setBackground(Color.WHITE);
+                    this.jPassword.setBackground(Color.WHITE);
+                    this.jPasswordRep.setBackground(Color.WHITE);
 
                     this.jTextFieldNombre.setText(null);
                     this.jTextFieldApellido.setText(null);

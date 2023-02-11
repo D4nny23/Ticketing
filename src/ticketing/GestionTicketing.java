@@ -98,6 +98,7 @@ public class GestionTicketing extends javax.swing.JFrame {
         btnAdmin = new javax.swing.JButton();
         btnVerTodasLasIncidencias = new javax.swing.JButton();
         btnInsert = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
 
         btnBuscar9.setText("Buscar Incidencia");
         btnBuscar9.addActionListener(new java.awt.event.ActionListener() {
@@ -238,6 +239,13 @@ public class GestionTicketing extends javax.swing.JFrame {
             }
         });
 
+        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -258,6 +266,7 @@ public class GestionTicketing extends javax.swing.JFrame {
                                 .addComponent(btnBuscarIncidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnIncidencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,7 +360,8 @@ public class GestionTicketing extends javax.swing.JFrame {
                     .addComponent(jLabelPrioridad, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(textFieldPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelTecnico, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(textFieldTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrarSesion))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -514,6 +524,12 @@ public class GestionTicketing extends javax.swing.JFrame {
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
+
+        if (this.p.getTipo().equalsIgnoreCase("Admin")) {
+            JOptionPane.showMessageDialog(this, "Eres admin");
+        } else {
+            JOptionPane.showMessageDialog(this, "No puedes acceder a este apartado, no eres Admin");
+        }
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnBuscar11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar11ActionPerformed
@@ -548,6 +564,13 @@ public class GestionTicketing extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Hubo otros problemas");
         }
     }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        IniciarSesion2 is = new IniciarSesion2();
+        is.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -589,6 +612,7 @@ public class GestionTicketing extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar11;
     private javax.swing.JButton btnBuscar9;
     private javax.swing.JButton btnBuscarIncidencia;
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnIncidencia;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnInsertaIncidencia;
