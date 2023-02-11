@@ -7,11 +7,12 @@ package ticketing;
 import DAOImplements.DaoImplements;
 import Pojo.*;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author dev
+ * @author Daniel
  */
 public class GestionTicketing extends javax.swing.JFrame {
 
@@ -461,6 +462,7 @@ public class GestionTicketing extends javax.swing.JFrame {
     private void btnInsertaIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertaIncidenciaActionPerformed
         // TODO add your handling code here:
         this.textFieldAutor.setText(String.valueOf(this.p.getId()));
+        this.textFieldFechaCreacion.setText(String.valueOf(LocalDate.now()));
 
         this.jTextFieldIncidencia.setVisible(true);
         this.jLabelAutor.setVisible(true);
@@ -499,7 +501,6 @@ public class GestionTicketing extends javax.swing.JFrame {
         this.jTextAreaDescripcion.setText(null);
         this.textFieldEstado.setText(null);
         this.textFieldFechaCierre.setText(null);
-        this.textFieldFechaCreacion.setText(null);
         this.textFieldPrioridad.setText(null);
         this.textFieldTecnico.setText(null);
         this.textFieldTipo.setText(null);

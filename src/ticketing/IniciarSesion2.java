@@ -8,10 +8,10 @@ package ticketing;
 import DAOImplements.*;
 import java.sql.SQLException;
 import Pojo.*;
-import ticketing.Registro;
+import ticketing.*;
 
 /**
- *
+ * 
  * @author Daniel
  */
 public class IniciarSesion2 extends javax.swing.JFrame {
