@@ -1,142 +1,255 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ticketing;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Iterator;
+import DAOImplements.*;
+import java.sql.SQLException;
+import Pojo.*;
+import ticketing.*;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class IniciarSesion extends JFrame {
-
-    private JPasswordField password;
-    private JTextField usuario;
-    private final JPanel contentPanel = new JPanel();
+/**
+ * 
+ * @author Daniel
+ */
+public class IniciarSesion extends javax.swing.JFrame {
 
     /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        try {
-            IniciarSesion is = new IniciarSesion();
-            is.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            is.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Create the dialog.
+     * Creates new form IniciarSesion2
      */
     public IniciarSesion() {
-        String[] correos = {"alumndodepeter@gmail.com", "estudiamos@conpeter.com", "desarrollo@deinterfaces.com",
-            "desarrolla@conpeter.com"};
-        String[] passwords = {"1111", "2222", "3333", "4444"};
-
-        setBounds(100, 100, 342, 447);
-        getContentPane().setLayout(null);
-        contentPanel.setBounds(0, 0, 0, 0);
-        contentPanel.setLayout(new FlowLayout());
-        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-        getContentPane().add(contentPanel);
-        getContentPane().setBackground(new Color(136, 185, 244));
-        getContentPane().setLayout(null);
-
-        password = new JPasswordField();
-        password.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                password.setText(null);
-            }
-        });
-        password.setToolTipText("");
-        password.setBounds(60, 259, 205, 31);
-        getContentPane().add(password);
-
-        JLabel etiquetaContrasenya = new JLabel("Contraseña:");
-        etiquetaContrasenya.setBounds(60, 234, 110, 14);
-        getContentPane().add(etiquetaContrasenya);
-
-        usuario = new JTextField();
-        usuario.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                usuario.setText(null);
-            }
-        });
-
-        usuario.setBounds(60, 192, 205, 31);
-        getContentPane().add(usuario);
-        usuario.setColumns(10);
-
-        JLabel etiquetaUsuario = new JLabel("Usuario:");
-        etiquetaUsuario.setBounds(60, 159, 130, 22);
-        getContentPane().add(etiquetaUsuario);
-
-        JLabel lblError = new JLabel("");
-        lblError.setBounds(60, 301, 153, 70);
-        getContentPane().add(lblError);
-
-        JLabel imagen = new JLabel("");
-        imagen.setBackground(new Color(255, 255, 255));
-        imagen.setIcon(new ImageIcon("./User.png"));
-        imagen.setBounds(112, 32, 91, 116);
-        getContentPane().add(imagen);
-
-        JButton btnAceptar = new JButton("Aceptar");
-        btnAceptar.addActionListener(new ActionListener() {
-            String texto;
-            int contador = 0;
-
-            public void actionPerformed(ActionEvent e) {
-                lblError.setText(null);
-                contador++;
-                for (int i = 0; i < passwords.length; i++) {
-                    if (usuario.getText().equals(correos[i]) && password.getText().equals(passwords[i])) {
-                        dispose();
-                    } else if (!usuario.getText().equals(correos[i]) && !password.getText().equals(passwords[i])) {
-                        texto = "<html><body>Usuario o contraseña <br>incorrectos</body></html>";
-                        lblError.setForeground(Color.red);
-                        lblError.setText(texto);
-                    }
-                }
-
-                if (contador == 3) {
-                    contador = 0;
-                    lblError.setForeground(Color.red);
-                    texto = "<html><body>Error. Has fallado <br>muchas veces.<br> Ponte en contacto<br>con el administrador</body></html>";
-                    lblError.setText(texto);
-                    usuario.disable();
-                    password.disable();
-                    btnAceptar.setEnabled(false);
-                }
-
-            }
-        });
-        btnAceptar.setBounds(223, 317, 89, 23);
-
-        getContentPane().add(btnAceptar);
-
-        JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-        btnCerrar.setBounds(223, 351, 89, 23);
-        getContentPane().add(btnCerrar);
+        initComponents();
 
     }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabelImagen = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelRespuestas = new javax.swing.JLabel();
+        jButtonAceptar = new javax.swing.JButton();
+        jButtonRegistro = new javax.swing.JButton();
+        jButtonCerrar = new javax.swing.JButton();
+        jPasswordFieldContraseña = new javax.swing.JPasswordField();
+        jTextFieldCorreo = new javax.swing.JTextField();
+        jLabelFoto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setState(1);
+        getContentPane().add(jLabelImagen, java.awt.BorderLayout.PAGE_START);
+
+        jPanel1.setBackground(new java.awt.Color(136, 185, 244));
+
+        jLabelRespuestas.setEnabled(false);
+
+        jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
+
+        jButtonRegistro.setText("Registrarse");
+        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistroActionPerformed(evt);
+            }
+        });
+
+        jButtonCerrar.setText("Cerrar");
+        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarActionPerformed(evt);
+            }
+        });
+
+        jPasswordFieldContraseña.setText("jPasswordField1");
+        jPasswordFieldContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordFieldContraseñaMouseClicked(evt);
+            }
+        });
+        jPasswordFieldContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldContraseñaActionPerformed(evt);
+            }
+        });
+
+        jTextFieldCorreo.setText("ejemplo@ejemplo.com");
+        jTextFieldCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldCorreoMouseClicked(evt);
+            }
+        });
+
+        jLabelFoto.setBackground(new java.awt.Color(246, 244, 246));
+        jLabelFoto.setIcon(new javax.swing.ImageIcon("/home/dev/NetBeansProjects/Ticketing/User.png")); // NOI18N
+
+        jLabel1.setText("<html><body style='font-size:1.2em'><b>Sistema de Ticketing</b></body></html>");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonAceptar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonRegistro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabelFoto)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPasswordFieldContraseña, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+                        .addGap(70, 70, 70))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPasswordFieldContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAceptar)
+                    .addComponent(jButtonRegistro)
+                    .addComponent(jButtonCerrar))
+                .addGap(45, 45, 45))
+        );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        try (DaoImplements di = new DaoImplements()) {
+            Perfil p = di.buscaPerfil(this.jTextFieldCorreo.getText());
+            if (p.getPassword().equals(this.jPasswordFieldContraseña.getText())) {
+                GestionTicketing gt = new GestionTicketing(p);
+                gt.setVisible(true);
+                dispose();
+            } else {
+                this.jLabelRespuestas.setText("<html><body>Contraseña incorrecta. Has realizado<br> " + p.getIntentos() + " intentos</body></html>");
+                di.actualizaIntentos(p.getId(), p.getIntentos() + 1);
+                if (p.getIntentos() == 3) {
+                    this.jLabelRespuestas.setText("<html><body>Has realizado demasiados intentos pongase<br> en contacto con el administrador</body></html>");
+                    this.jButtonAceptar.setEnabled(false);
+                    this.jButtonRegistro.setEnabled(false);
+                }
+            }
+        } catch (SQLException ex) {
+            this.jLabelRespuestas.setText("No se ha encontrado el perfil");
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            this.jLabelRespuestas.setText("Hubo otros problemas");
+        }
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
+        Registro r = new Registro(this);
+        r.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonRegistroActionPerformed
+
+    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButtonCerrarActionPerformed
+
+    private void jPasswordFieldContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldContraseñaMouseClicked
+        // TODO add your handling code here:
+        this.jPasswordFieldContraseña.setText(null);
+    }//GEN-LAST:event_jPasswordFieldContraseñaMouseClicked
+
+    private void jTextFieldCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCorreoMouseClicked
+        // TODO add your handling code here:
+        this.jTextFieldCorreo.setText(null);
+    }//GEN-LAST:event_jTextFieldCorreoMouseClicked
+
+    private void jPasswordFieldContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldContraseñaActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IniciarSesion().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButtonCerrar;
+    private javax.swing.JButton jButtonRegistro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelFoto;
+    private javax.swing.JLabel jLabelImagen;
+    private javax.swing.JLabel jLabelRespuestas;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordFieldContraseña;
+    private javax.swing.JTextField jTextFieldCorreo;
+    // End of variables declaration//GEN-END:variables
 }
