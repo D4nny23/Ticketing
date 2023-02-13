@@ -34,7 +34,7 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
     public ArrayList<Incidencia> devuelveIncidencias() throws Exception {
         ArrayList<Incidencia> incidencias = new ArrayList<>();
         Incidencia i;
-        String sql = "Select id, estado, fecha_creacion, fecha_cierre, descripcion, prioridad, tipo, id_perfil,id_tecnico from ticketing";
+        String sql = "Select id, estado, fecha_creacion, fecha_cierre, descripcion, prioridad, tipo, id_perfil,id_tecnico, titulo from incidencia";
         try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql);) {
             while (rs.next()) {
                 i = new Incidencia(rs.getInt("id"), rs.getString("titulo"), rs.getString("estado"), rs.getString("fecha_creacion"),

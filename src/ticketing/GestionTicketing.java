@@ -538,6 +538,9 @@ public class GestionTicketing extends javax.swing.JFrame {
 
     private void btnVerTodasLasIncidenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTodasLasIncidenciasActionPerformed
         // TODO add your handling code here:
+        ListadoDeIncidencias ls= new ListadoDeIncidencias();
+        ls.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnVerTodasLasIncidenciasActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
