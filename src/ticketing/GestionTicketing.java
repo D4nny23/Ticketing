@@ -538,7 +538,7 @@ public class GestionTicketing extends javax.swing.JFrame {
 
     private void btnVerTodasLasIncidenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTodasLasIncidenciasActionPerformed
         // TODO add your handling code here:
-        ListadoDeIncidencias ls= new ListadoDeIncidencias();
+        ListadoDeIncidencias ls = new ListadoDeIncidencias();
         ls.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVerTodasLasIncidenciasActionPerformed
@@ -547,7 +547,7 @@ public class GestionTicketing extends javax.swing.JFrame {
         // TODO add your handling code here:
         try (DaoImplements di = new DaoImplements()) {
             Incidencia i = new Incidencia(this.textFieldEstado.getText(), this.jTextAreaDescripcion.getText(), this.textFieldPrioridad.getText(), this.textFieldTipo.getText(),
-                    Integer.parseInt(this.txtFieldId.getText()), this.textFieldTitulo.getText());
+                    p.getId(), this.textFieldTitulo.getText());
             di.insertaIncidencia(i);
             JOptionPane.showMessageDialog(this, "Incidencia Registrada");
             this.jTextAreaDescripcion.setText(null);
@@ -565,6 +565,7 @@ public class GestionTicketing extends javax.swing.JFrame {
             ex.printStackTrace();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Hubo otros problemas");
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnInsertActionPerformed
 
