@@ -8,6 +8,7 @@ package ticketing;
 import DAOImplements.*;
 import java.sql.SQLException;
 import Pojo.*;
+import java.awt.Color;
 import ticketing.*;
 
 /**
@@ -74,10 +75,15 @@ public class IniciarSesion extends javax.swing.JFrame {
             }
         });
 
-        jPasswordFieldContraseña.setText("jPasswordField1");
+        jPasswordFieldContraseña.setText("*********");
+        jPasswordFieldContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPasswordFieldContraseñaFocusGained(evt);
+            }
+        });
         jPasswordFieldContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPasswordFieldContraseñaMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPasswordFieldContraseñaMousePressed(evt);
             }
         });
         jPasswordFieldContraseña.addActionListener(new java.awt.event.ActionListener() {
@@ -86,10 +92,10 @@ public class IniciarSesion extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldCorreo.setText("ejemplo@ejemplo.com");
+        jTextFieldCorreo.setText("Ingrese su usuario");
         jTextFieldCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldCorreoMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTextFieldCorreoMousePressed(evt);
             }
         });
 
@@ -190,20 +196,41 @@ public class IniciarSesion extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
-    private void jPasswordFieldContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldContraseñaMouseClicked
-        // TODO add your handling code here:
-        this.jPasswordFieldContraseña.setText(null);
-    }//GEN-LAST:event_jPasswordFieldContraseñaMouseClicked
-
-    private void jTextFieldCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCorreoMouseClicked
-        // TODO add your handling code here:
-        this.jTextFieldCorreo.setText(null);
-    }//GEN-LAST:event_jTextFieldCorreoMouseClicked
-
     private void jPasswordFieldContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldContraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordFieldContraseñaActionPerformed
 
+    private void jTextFieldCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCorreoMousePressed
+        // TODO add your handling code here:
+        if (this.jTextFieldCorreo.getText().equals("Ingrese su usuario")) {
+            this.jTextFieldCorreo.setText("");
+            this.jTextFieldCorreo.setForeground(Color.black);
+        }
+        
+        if (String.valueOf(this.jPasswordFieldContraseña.getPassword()).isEmpty()) {
+            this.jPasswordFieldContraseña.setText("*********");
+            this.jPasswordFieldContraseña.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_jTextFieldCorreoMousePressed
+
+    private void jPasswordFieldContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldContraseñaFocusGained
+        // TODO add your handling code here:
+        this.jPasswordFieldContraseña.setText("");
+    }//GEN-LAST:event_jPasswordFieldContraseñaFocusGained
+
+    private void jPasswordFieldContraseñaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldContraseñaMousePressed
+        // TODO add your handling code here:
+        if (String.valueOf(this.jPasswordFieldContraseña.getPassword()).equals("*********")) {
+            this.jPasswordFieldContraseña.setText("");
+            this.jPasswordFieldContraseña.setForeground(Color.black);
+        }
+        if (this.jTextFieldCorreo.getText().isEmpty()) {
+            this.jTextFieldCorreo.setText("Ingrese su usuario");
+            this.jTextFieldCorreo.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_jPasswordFieldContraseñaMousePressed
+
+    
     /**
      * @param args the command line arguments
      */
