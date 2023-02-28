@@ -139,12 +139,28 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
 
     @Override
     public ArrayList<Perfil> devuelvePerfiles() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList perfiles = new ArrayList();
+        Perfil p;
+        String sql = "Select id, nombre, apellido, tipo, correo, telefono from perfiles";
+        try (Statement stm = con.createStatement(); ResultSet rs = stm.executeQuery(sql);) {
+            while (rs.next()) {
+                p = new Perfil(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("tipo"),
+                        rs.getString("correo"), rs.getString("telefono"));
+                perfiles.add(p);
+            }
+            return perfiles;
+        }
     }
 
     @Override
     public void modificaPerfil(Perfil p) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "update perfiles set id = " + p.getId()
+                + ", nombre " + p.getNombre()
+                + ", apellido = " + p.getApellido()
+                + ", tipo = " + p.getTipo()
+                + ", correo = " + p.getCorreo()
+                + ", telefono = " + p.getTelefono()
+                + " where id = " + p.getId();
     }
 
     @Override
@@ -161,6 +177,5 @@ public class DaoImplements implements AutoCloseable, DAOInterface {
     public void borrarIncidencia(int id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
 }

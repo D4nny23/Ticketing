@@ -4,6 +4,13 @@
  */
 package ticketing;
 
+import DAOImplements.DaoImplements;
+import Pojo.Incidencia;
+import Pojo.Perfil;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author dev
@@ -13,9 +20,38 @@ public class Admin extends javax.swing.JDialog {
     /**
      * Creates new form Admin
      */
+    ArrayList<Perfil> perfiles;
+    ArrayList<Incidencia> incidencias;
+
     public Admin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.jLabelTitulo.setText("<html><body><b>Panel de Administrador</b></body></html>");
+        try (DaoImplements di = new DaoImplements()) {
+            perfiles = di.devuelvePerfiles();
+            DefaultTableModel dm = (DefaultTableModel) this.jTablePerfiles.getModel();
+            for (Perfil p : perfiles) {
+                Object o[] = {p.getId(), p.getNombre(), p.getApellido(), p.getTipo(), p.getCorreo(),
+                    p.getTelefono()};
+                dm.addRow(o);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+        }
+        try (DaoImplements di = new DaoImplements()){
+            DefaultTableModel dmInc = (DefaultTableModel) this.jTableIncidencias.getModel();
+            incidencias = di.devuelveIncidencias();
+            for (Incidencia i : incidencias) {
+                Object o[] = {i.getId(), i.getEstado(), i.getFecha_creacion(), i.getFecha_cierre(), i.getDescripcion(),
+                    i.getPrioridad(), i.getTipo(), i.getId_perfil(), i.getId_tecnico(), i.getTitulo()};
+                dmInc.addRow(o);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -28,20 +64,115 @@ public class Admin extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableIncidencias = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTablePerfiles = new javax.swing.JTable();
+        jLabelPerfiles = new javax.swing.JLabel();
+        jLabelIncidencias = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(136, 185, 244));
 
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jTableIncidencias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Estado", "FechaCreacion", "FechaCierre", "Descripcion", "Prioridad", "Tipo", "Id_perfil", "Id_tecnico", "Titulo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableIncidencias);
+        if (jTableIncidencias.getColumnModel().getColumnCount() > 0) {
+            jTableIncidencias.getColumnModel().getColumn(0).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(1).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(2).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(3).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(4).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(5).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(6).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(7).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(8).setResizable(false);
+            jTableIncidencias.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTablePerfiles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nombre", "Apellido", "Tipo", "Correo", "Telefono"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTablePerfiles);
+        if (jTablePerfiles.getColumnModel().getColumnCount() > 0) {
+            jTablePerfiles.getColumnModel().getColumn(0).setResizable(false);
+            jTablePerfiles.getColumnModel().getColumn(1).setResizable(false);
+            jTablePerfiles.getColumnModel().getColumn(2).setResizable(false);
+            jTablePerfiles.getColumnModel().getColumn(3).setResizable(false);
+            jTablePerfiles.getColumnModel().getColumn(4).setResizable(false);
+            jTablePerfiles.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        jLabelPerfiles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPerfiles.setText("Perfiles");
+
+        jLabelIncidencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelIncidencias.setText("Incidencias");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1327, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPerfiles, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelIncidencias, javax.swing.GroupLayout.PREFERRED_SIZE, 905, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 905, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 644, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPerfiles)
+                    .addComponent(jLabelIncidencias))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(335, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -92,6 +223,13 @@ public class Admin extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelIncidencias;
+    private javax.swing.JLabel jLabelPerfiles;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableIncidencias;
+    private javax.swing.JTable jTablePerfiles;
     // End of variables declaration//GEN-END:variables
 }
