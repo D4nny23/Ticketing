@@ -526,7 +526,8 @@ public class GestionTicketing extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (this.p.getTipo().equalsIgnoreCase("Admin")) {
-            JOptionPane.showMessageDialog(this, "Eres admin");
+            Admin ad= new Admin(this, true);
+            ad.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "No puedes acceder a este apartado, no eres Admin");
         }
@@ -540,7 +541,6 @@ public class GestionTicketing extends javax.swing.JFrame {
         // TODO add your handling code here:
         ListadoDeIncidencias ls = new ListadoDeIncidencias();
         ls.setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnVerTodasLasIncidenciasActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
